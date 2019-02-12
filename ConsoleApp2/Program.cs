@@ -12,16 +12,22 @@ namespace Recognizer
         static void Main(string[] args)
         {
             var sx = new double[,] { { -1, -2, -1 }, { 0, 0, 0 }, { 1, 2, 1 } };
-            var g = new double[,] { { } };
+            var g = new double[,] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 }, { 10, 11, 12 }, { 13, 14, 15 } };
             //PrintArray(xy);
             //xy = GetTranponMatrix(xy);
             //PrintArray(xy);
-            PrintArray(sx);
-            PrintLine(sx);
+            var g1 = SobelFilterTask.CreatExpandArr(g);
+            PrintArray(g);
+            PrintArray(g1);
+
 
             var arr = Recognizer.SobelFilterTask.SobelFilter(sx, sx);
-
+            
         }
+
+       
+
+
         static void PrintLine(double[,] arr)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
@@ -55,6 +61,7 @@ namespace Recognizer
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("\n\n");
         }
     }
 }

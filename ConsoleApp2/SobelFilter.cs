@@ -27,6 +27,34 @@ namespace Recognizer
 
             return result;
         }
+
+        public static double[,] CreatExpandArr(double[,] arr)
+        {
+            var result = new double[arr.GetLength(0) + 2, arr.GetLength(1) + 2];
+
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    result[i + 1, j + 1] = arr[i, j];
+                }
+            }
+
+            var x = result.GetLength(1);
+            var y = result.GetLength(0);
+            for (int i = 0; i < x - 1; i++)
+            {
+                result[0, i] = result[1, i];
+                result[y - 1, i] = result[y - 2, i];
+
+            }
+            for (int i = 0; i < y; i++)
+            {
+                result[i, 0] = result[i, 1];
+                result[i, x - 1] = result[i, x - 2];
+            }
+            return result;
+        }
     }
 }
 /* 
