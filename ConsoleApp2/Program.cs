@@ -11,14 +11,15 @@ namespace Recognizer
     {
         static void Main(string[] args)
         {
-            var xy = new double[4,3] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 },{ 10, 11, 12 } };
+            var sx = new double[,] { { -1, -2, -1 }, { 0, 0, 0 }, { 1, 2, 1 } };
+            var g = new double[,] { { } };
             //PrintArray(xy);
             //xy = GetTranponMatrix(xy);
             //PrintArray(xy);
-            PrintArray(xy);
-            PrintLine(xy);
+            PrintArray(sx);
+            PrintLine(sx);
 
-            var arr = Recognizer.SobelFilterTask.SobelFilter(xy, xy);
+            var arr = Recognizer.SobelFilterTask.SobelFilter(sx, sx);
 
         }
         static void PrintLine(double[,] arr)
