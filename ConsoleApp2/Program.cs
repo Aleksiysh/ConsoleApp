@@ -31,7 +31,7 @@ namespace Recognizer
 
 
 
-            PrintArray(SobelFilterTask.SobelFilter(g, sx));
+            PrintArray(SobelFilterTask.SobelFilter(g, sx1));
 
 
 
