@@ -11,7 +11,16 @@ namespace Recognizer
     {
         static void Main(string[] args)
         {
-            var sx = new double[,] { { -1, -2, -1 }, { 0, 0, 0 }, { 1, 2, 1 } };
+            var sx = new double[,] {    {1,  4,  6,  4,  1},
+                                        {2,  8,  12, 8,  2},
+                                        {0,  0,  0,  0,  0},
+                                        {2,  8,  12, 8,  2},
+                                        {1,  4,  6  ,4,  1}
+                    };
+            var sx1 = new double[,] {    { -1, -2, -1 },
+                                        {  0,  0,  0 },
+                                        {  1,  2,  1 }
+                                    };
             var g = new double[,] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 }, { 10, 11, 12 }, { 13, 14, 15 } };
             //PrintArray(xy);
             //xy = GetTranponMatrix(xy);
@@ -23,11 +32,11 @@ namespace Recognizer
 
 
             PrintArray(SobelFilterTask.SobelFilter(g, sx));
-            
 
 
-            
 
+
+            Console.ReadKey();
         }
 
 
@@ -58,12 +67,12 @@ namespace Recognizer
                     // Такая операция ещё называется свёрткой (Сonvolution)
                     var gx = 0.0;
                     var gy = 0.0;
-                    for (int k = 0; k < lenSx ; k++)
+                    for (int k = 0; k < lenSx; k++)
                     {
                         for (int l = 0; l < lenSx; l++)
                         {
-                            gx += sx[l-(int)(lenSx/2), k-(int)(lenSx/2)];
-                            gy += sx[k - (int)(lenSx / 2), l-(int)(lenSx / 2)];
+                            gx += sx[l - (int)(lenSx / 2), k - (int)(lenSx / 2)];
+                            gy += sx[k - (int)(lenSx / 2), l - (int)(lenSx / 2)];
                         }
                     }
                     result[x, y] = Math.Sqrt(gx * gx + gy * gy);
@@ -83,9 +92,9 @@ namespace Recognizer
         {
             var result = new double[arr.GetLength(0) - 2, arr.GetLength(1) - 2];
 
-            for (int i = 1; i < arr.GetLength(0)-1; i++)
+            for (int i = 1; i < arr.GetLength(0) - 1; i++)
             {
-                for (int j = 1; j < arr.GetLength(1)-1; j++)
+                for (int j = 1; j < arr.GetLength(1) - 1; j++)
                 {
                     result[i - 1, j - 1] = arr[i, j];
                 }
@@ -135,5 +144,23 @@ namespace Recognizer
 //1	1	1	
 //1	1	0	
 //1	0	0	
- 
+
 //Image[0, 1] should be 0, but was 1.4142135623731
+
+//Exception on: Image 6x7
+//sx:
+//1	4	6	4	1	
+//2	8	12	8	2	
+//0	0	0	0	0	
+//2	8	12	8	2	
+//1	4	6	4	1	
+
+//Image pixels:
+//0.1	0.3	0.8	0.7	0.4	0.2	0.1	
+//0.1	0.9	0.2	0.9	0	0.9	0.9	
+//1	0.8	0.5	1	0.6	0.8	1	
+//0.1	0.3	0.6	0.8	0.3	0.2	0.9	
+//0.7	0.3	0.5	0.8	0.2	0.4	0	
+//0	0.3	0.9	1	0.5	1	0.5	
+
+//Index was outside the bounds of the array.
